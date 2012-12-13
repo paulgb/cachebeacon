@@ -1,0 +1,13 @@
+{
+  "name": "cachebug",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "coffee app.coffee",
+    "startauth": "authbind --deep coffee app.coffee"
+  },
+  "dependencies": {
+    "coffee-script": "*",
+    "http-proxy": "*",
+    "native-dns": "*"
+  }
+}
