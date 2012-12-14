@@ -1,14 +1,20 @@
-<!DOCTYPE html><html lang="en"><head><title>Piggybacking common web beacons to track users around the web</title><style>@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+<!DOCTYPE html><html lang="en"><head><title>Piggybacking common web beacons to track users maliciously</title><style>@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
 
 body {
   font-family: 'Droid Serif', serif;
   margin-bottom: 50px;
+  background-color: #f8f8f0;
+  color: #666;
+}
+
+h1, h2 {
+  color: #404;
 }
 
 .content {
   max-width: 600px;
   margin-left: 50px;
-}</style></head><body><div class="content"><h1>Piggybacking common web beacons to track users around the web</h1>
+}</style></head><body><div class="content"><h1>Piggybacking common web beacons to track users maliciously</h1>
 <p>Most technical users know that when they access the internet over an untrusted connection, any data sent unencrypted can be intercepted by the router. However, it is generally assumed that the risk subsides when the connection ends. This is not the case. As I will demonstrate, by piggybacking malicious code on common web “beacons” and tracking codes, it is possible for a malicious router to run arbitrary Javascript code on any page which uses one of the piggybacked beacons. These beacons include Google Analytics and Facebook Connect.
 
 </p>
