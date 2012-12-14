@@ -13,5 +13,6 @@ module.exports = [
     'http://www.googleadservices.com/pagead/conversion.js'
     'http://platform.twitter.com/widgets.js'
     'http://platform.twitter.com/js/tfw/widget/hubclient.js'
+    'http://adsyndication.msn.com/delivery/getads.js'
 ]
 
