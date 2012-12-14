@@ -1,0 +1,12 @@
+{
+  "name": "cachebeacon-page",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "coffee build.coffee"
+  },
+  "dependencies": {
+    "coffee-script": "*",
+    "marked": "*",
+    "jade": "*"
+  }
+}
